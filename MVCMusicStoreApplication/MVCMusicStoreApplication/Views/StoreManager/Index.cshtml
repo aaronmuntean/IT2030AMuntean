@@ -5,6 +5,42 @@
 }
 
 <h2>Index</h2>
+<div id="dailydeal">
+    @Ajax.ActionLink("Click here to see today's special!",
+            "DailyDeal",
+            null,
+            new AjaxOptions {
+                UpdateTargetId = "dailydeal",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET"
+            },
+            new { @class = "btn btn-primary" });
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Artist Search</div>
+    <div class="panel-body">
+        @using (
+            Ajax.BeginForm("ArtistSearch", "StoreManager",
+                new AjaxOptions {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    UpdateTargetId = "searchresults",
+                    LoadingElementId = "ajax-loader",
+                    OnFailure = "searchFailed"
+                    
+                }
+            )
+        ) {
+            <input type="text" name="q" />
+            <input type="submit" value="search" />
+            <img id="ajax-loader" src="@Url.Content("~/Images/placeholder.gif")" style="display:none" />
+        }
+        <div id="searchresults">
+
+        </div>
+    </div>
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -69,3 +105,7 @@
 }
 
 </table>
+@section Scripts {
+     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/App/MusicStoreScript.js"></script>
+}

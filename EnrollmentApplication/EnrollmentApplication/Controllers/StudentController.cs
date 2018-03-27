@@ -123,5 +123,13 @@ namespace EnrollmentApplication.Controllers
             }
             base.Dispose(disposing);
         }
-    }
+
+		public ActionResult StudentOfTheMonth() {
+			var students = db.Students.OrderBy(s => s.LastName).Take(db.Students.Count());
+
+			students = students.OrderBy(a => Guid.NewGuid());
+
+			return PartialView(students.First());
+		}
+	}
 }

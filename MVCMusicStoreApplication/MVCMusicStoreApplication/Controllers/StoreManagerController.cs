@@ -18,6 +18,11 @@ namespace MVCMusicStoreApplication.Controllers {
 			return View(albums.ToList());
 		}
 
+		/*public ActionResult DailyDeal() {
+			var album = GetDailyDeal();
+			return View(album);
+		}*/
+
 		// GET: StoreManager/Details/5
 		public ActionResult Details(int? id) {
 			if (id == null) {
@@ -138,6 +143,15 @@ namespace MVCMusicStoreApplication.Controllers {
 			ViewBag.AlbumsByArtist = new SelectList(albumsByArtist, "AlbumId", "Title", albumsByArtist.First().AlbumId);
 			ViewBag.AlbumsByGenre = new SelectList(albumsByGenre, "AlbumId", "Title", albumsByGenre.First().AlbumId);
 			return View();
+		}
+
+		public ActionResult ArtistSearch(string q) {
+			var artists = GetArtists(q);
+			return PartialView(artists);
+		}
+
+		private List<Artist> GetArtists(string searchstring) {
+			return db.Artists.Where(a => a.Name.Contains(searchstring)).ToList();
 		}
 	}
 }
