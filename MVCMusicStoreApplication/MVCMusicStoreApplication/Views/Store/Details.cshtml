@@ -12,9 +12,7 @@
     <p>Artist: @Model.Artist.Name</p>
     <p>Price: @Model.Price</p>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <a href="~/ShoppingCart/AddToCart/@Model.AlbumId"><input type="submit"value="Add to Cart" class="btn btn-default" /></a>
-        </div>
+    <div class="button">
+        @Html.ActionLink("Add to Cart", "AddToCart", "ShoppingCart", new { id = Model.AlbumId }, null)
     </div>
 </div>
