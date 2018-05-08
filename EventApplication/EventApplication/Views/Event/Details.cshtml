@@ -1,0 +1,26 @@
+﻿@model EventApplication.Models.Event
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for @Model.Title</h2>
+
+<ul>
+    <li>Description: @Model.Description</li>
+    <li>Organizer: @Model.Organizer</li>
+    <li>Available Tickets: @Model.AvailableTickets</li>
+</ul>
+
+@Ajax.ActionLink("Register", "Register", new { id = Model.Id },
+                  new AjaxOptions {
+                      InsertionMode = InsertionMode.Replace,
+                      HttpMethod = "GET",
+                      UpdateTargetId = "register"
+                  },
+                  new { @class = "btn btn-primary" })
+<div id="register"></div>
+
+
+@section Scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

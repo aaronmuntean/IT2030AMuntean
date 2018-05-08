@@ -1,0 +1,12 @@
+﻿@model EventApplication.Models.Event
+
+<div id="register">
+    @Model.Title
+    @using (Html.BeginForm("Create", "Order")) {
+        <input type = "text" name = "tickets" />
+        <input type = "hidden" name = "id" value= @Model.Id />
+        <input type="submit" value="Checkout" />
+    }
+    
+    
+</div>

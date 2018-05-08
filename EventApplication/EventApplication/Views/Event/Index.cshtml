@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Find an event.</h2>
+<div>
+    @using (
+        Ajax.BeginForm("Search", "Event",
+            new AjaxOptions {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+                UpdateTargetId = "search-results",
+                OnFailure = "searchFailed"
+            }
+     )) {
+        <input type="text" name="evnt" />
+        <input type="text" name="loc" />
+        <input class = "btn btn-primary" type="submit" value="search" />
+    }
+</div>
+
+@Ajax.ActionLink("Last Minute Deals", "LastMinuteDeal", "Event",
+                  new AjaxOptions {
+                      InsertionMode = InsertionMode.Replace,
+                      HttpMethod = "GET",
+                      UpdateTargetId = "last-minute"
+                  },
+                  new { @class = "btn" })
+<div id="last-minute"></div>
+
+<div id="search-results"></div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/App/EventScript.js"></script>
+}
+
+

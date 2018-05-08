@@ -1,0 +1,19 @@
+﻿@model IEnumerable<EventApplication.Models.Event>
+
+<div id="last-minute">
+    <table>
+        <tr>
+            <th>Event</th>
+            <th>Date &amp; Time</th>
+            <th>Location</th>
+        </tr>
+
+        @foreach (var item in Model) {
+        <tr>
+            <td>@Html.ActionLink(item.Title, "Details", new { id = item.Id })</td>
+            <td>@item.StartDateTime.ToString()</td>
+            <td>@item.LocationCity, @item.LocationState</td>
+        </tr>
+        }
+    </table>
+</div>
